@@ -1,0 +1,38 @@
+/* React Component being defined */
+export default function JobsPage() {    
+    <div className="min-h-screen p-8 bg-gray-50">   /* height, padding and background color(s)*/
+      <div className="max-w-4xl mx-auto">
+        <h2 className="text-2xl font-semibold mb-4">Jobs & Internships</h2>
+        <p className="text-gray-600 mb-6">
+          Search and filter internships and entry-level roles here.
+        </p>
+
+        {/* Search + Filter*/}  
+         <div className="flex gap-4 mb-8"> /* Creating search bar and dropdown option next to each other */
+          <input
+          type="text" /* Give users access to type text (job titles) */
+            placeholder="Search jobs..."
+            className="flex-1 border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500"
+          />
+          <select className="border border-gray-300 rounded px-4 py-2 focus:ring-2 focus:ring-blue-500">
+            <option>All Roles</option> /* A dropdown menu is being created with choices that can be selected within the dropdown*/
+            <option>Frontend</option>
+            <option>Backend</option>
+            <option>Fullstack</option>
+          </select>
+        </div>
+        
+        {/* Job Card: Creating job title, font size and color */}
+        <div className="grid gap-6"> /* grid uses CSS layout*/
+          <div className="bg-white p-6 rounded-lg shadow">
+            <h3 className="text-lg font-semibold">Frontend Intern</h3>
+            <p className="text-gray-600">Company: TechCorp</p>
+            <button className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+              Apply
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

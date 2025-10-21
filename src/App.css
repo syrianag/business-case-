@@ -1,0 +1,16 @@
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #0f172a 0%, #581c87 50%, #0f172a 100%);
+  min-height: 100vh;
+}
+
+main {
+  min-height: calc(100vh - 72px); /* Adjust based on your nav height */
+}
+#root {
+  min-height: 100vh;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+}
