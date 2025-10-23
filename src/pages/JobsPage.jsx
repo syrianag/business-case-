@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { useMemo, useState, useEffect } from 'react';
 import JobCard from '../components/JobCard'; // This path is now correct
 import Modal from '../components/Modal';
@@ -6,14 +5,6 @@ import { sampleJobs } from "../assets/jobs.js"
 import PageLayout from './PageLayout.jsx';
 import { MapPin, Building2, DollarSign, Clock, X, Star, Sparkles } from 'lucide-react';
 import PA3DMap from '../components/PA3DMap';
-=======
-import { useMemo, useState } from 'react';
-import JobCard from '../components/JobCard'; // This path is now correct
-import Modal from '../components/Modal';
-import { sampleJobs } from "../jobs.js"
-import PageLayout from '../components/PageLayout';
-import { MapPin, Building2, DollarSign, Clock } from 'lucide-react';
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
 
 export default function JobsPage() {
   const [query, setQuery] = useState('');
@@ -21,12 +12,9 @@ export default function JobsPage() {
   const [selectedRole, setSelectedRole] = useState('All');
   const [selectedJobTitle, setSelectedJobTitle] = useState('All Jobs');
   const [selectedJob, setSelectedJob] = useState(null);
-<<<<<<< HEAD
   const [recommendedJobs, setRecommendedJobs] = useState([]);
   const [aiRecommendedJobs, setAiRecommendedJobs] = useState([]);
   const [isFetchingAiRecs, setIsFetchingAiRecs] = useState(false);
-=======
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
 
   const careers = useMemo(() => ['All', ...Array.from(new Set(sampleJobs.map(j => j.career)))], []);
   const roles = useMemo(() => ['All', ...Array.from(new Set(sampleJobs.map(j => j.role)))], []);
@@ -48,7 +36,6 @@ export default function JobsPage() {
     });
   }, [query, selectedCareer, selectedRole, selectedJobTitle]);
 
-<<<<<<< HEAD
   useEffect(() => {
     const userSkills = JSON.parse(localStorage.getItem('userSkills')) || [];
     if (userSkills.length > 0) {
@@ -65,13 +52,10 @@ export default function JobsPage() {
     }
   }, []);
 
-=======
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
   function handleApply(job) {
     alert(`Apply clicked for ${job.title} at ${job.company}`);
   }
 
-<<<<<<< HEAD
   async function getAiRecommendations() {
     const userSkills = JSON.parse(localStorage.getItem('userSkills')) || [];
     if (userSkills.length === 0) {
@@ -120,8 +104,6 @@ export default function JobsPage() {
     }
   }
 
-=======
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
   return (
     <>
       <PageLayout 
@@ -130,7 +112,6 @@ export default function JobsPage() {
       >
         <div className="max-w-7xl mx-auto">
           
-<<<<<<< HEAD
           {/* 3D Map Section */}
           <div className="mb-8 bg-slate-800/50 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6">
             <div className="flex items-center gap-2 mb-4">
@@ -146,66 +127,12 @@ export default function JobsPage() {
                   selectedJob={selectedJob}
                   onJobSelect={setSelectedJob}
                 />
-=======
-          {/* Map Section */}
-          <div className="mb-8 bg-slate-800/50 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6">
-            <div className="flex items-center gap-2 mb-4">
-              <MapPin className="w-6 h-6 text-purple-400" />
-              <h2 className="text-2xl font-bold text-white">Jobs Map - Pennsylvania</h2>
-            </div>
-            
-            <div className="grid lg:grid-cols-3 gap-6">
-              {/* Interactive Map */}
-              <div className="lg:col-span-2">
-                <div className="relative bg-slate-700/30 rounded-lg overflow-hidden" style={{ paddingTop: '60%' }}>
-                  {/* PA State Outline */}
-                  <svg 
-                    viewBox="0 0 100 60" 
-                    className="absolute inset-0 w-full h-full"
-                    style={{ filter: 'drop-shadow(0 0 10px rgba(168, 85, 247, 0.3))' }}
-                  >
-                    <path
-                      d="M 5,40 L 15,25 L 30,20 L 50,18 L 70,20 L 85,25 L 95,35 L 90,50 L 70,55 L 50,58 L 30,55 L 10,48 Z"
-                      fill="rgba(168, 85, 247, 0.1)"
-                      stroke="rgba(168, 85, 247, 0.4)"
-                      strokeWidth="0.5"
-                    />
-                  </svg>
-
-                  {/* Job Pins */}
-                  {filtered.map(job => (
-                    <button
-                      key={job.id}
-                      onClick={() => setSelectedJob(job)}
-                      className="absolute transform -translate-x-1/2 -translate-y-full group z-10"
-                      style={{ 
-                        left: `${job.coordinates.x}%`, 
-                        top: `${job.coordinates.y}%` 
-                      }}
-                    >
-                      <MapPin 
-                        className={`w-8 h-8 transition-all ${
-                          selectedJob?.id === job.id 
-                            ? 'text-purple-400 scale-125' 
-                            : 'text-purple-500 group-hover:text-purple-300 group-hover:scale-110'
-                        }`}
-                        fill="currentColor"
-                      />
-                      <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 bg-slate-900 text-white px-3 py-1 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-purple-500/20">
-                        {job.title}
-                        <div className="text-xs text-gray-400">{job.company}</div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
               </div>
 
               {/* Selected Job Details */}
               <div>
                 {selectedJob ? (
                   <div className="bg-slate-700/30 border border-purple-500/20 rounded-lg p-4 h-full">
-<<<<<<< HEAD
                     <div className="flex items-start justify-between mb-3">
                       <h3 className="text-xl font-bold text-white">{selectedJob.title}</h3>
                       <button 
@@ -215,9 +142,6 @@ export default function JobsPage() {
                         <X className="w-5 h-5" />
                       </button>
                     </div>
-=======
-                    <h3 className="text-xl font-bold text-white mb-3">{selectedJob.title}</h3>
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
                     <div className="space-y-3 text-sm mb-4">
                       <div className="flex items-center gap-2 text-gray-300">
                         <Building2 className="w-4 h-4 text-purple-400" />
@@ -227,7 +151,6 @@ export default function JobsPage() {
                         <MapPin className="w-4 h-4 text-purple-400" />
                         {selectedJob.location}
                       </div>
-<<<<<<< HEAD
                       {selectedJob.salary && (
                         <div className="flex items-center gap-2 text-gray-300">
                           <DollarSign className="w-4 h-4 text-purple-400" />
@@ -240,16 +163,6 @@ export default function JobsPage() {
                           {selectedJob.type}
                         </div>
                       )}
-=======
-                      <div className="flex items-center gap-2 text-gray-300">
-                        <DollarSign className="w-4 h-4 text-purple-400" />
-                        {selectedJob.salary}
-                      </div>
-                      <div className="flex items-center gap-2 text-gray-300">
-                        <Clock className="w-4 h-4 text-purple-400" />
-                        {selectedJob.type}
-                      </div>
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
                     </div>
                     <p className="text-gray-300 text-sm mb-4">{selectedJob.description}</p>
                     <div className="flex flex-wrap gap-2 mb-4">
@@ -267,23 +180,17 @@ export default function JobsPage() {
                     </button>
                   </div>
                 ) : (
-<<<<<<< HEAD
                   <div className="bg-slate-700/30 border border-purple-500/20 rounded-lg p-4 h-full flex items-center justify-center text-center text-gray-400">
                     <div>
                       <MapPin className="w-12 h-12 mx-auto mb-2 opacity-50" />
                       <p>Click a pin on the map to see job details!</p>
                     </div>
-=======
-                  <div className="bg-slate-700/30 border border-purple-500/20 rounded-lg p-4 h-full flex items-center justify-center text-gray-400">
-                    Click a pin on the map to see job details
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
                   </div>
                 )}
               </div>
             </div>
           </div>
 
-<<<<<<< HEAD
           {/* Recommended Jobs Section */}
           {recommendedJobs.length > 0 && (
             <div className="mb-12">
@@ -337,8 +244,6 @@ export default function JobsPage() {
             )}
           </div>
 
-=======
->>>>>>> cb641bbe46de0a9575d2212fd8ee6a7777c5df19
           {/* Original Search Section */}
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-white mb-4">Search & Filter Jobs</h2>
