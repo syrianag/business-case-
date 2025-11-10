@@ -3,11 +3,6 @@ import PageLayout from './PageLayout';
 
 export default function HomePage() {
   const navigate = useNavigate();
-<<<<<<< HEAD
-
-=======
-  
->>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
   return (
     <PageLayout 
       title="Welcome to Beyond The Code" 
@@ -70,8 +65,4 @@ function Card({ title, description, buttonLabel, onClick }) {
       </button>
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
