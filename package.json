@@ -14,7 +14,10 @@
   },
   "dependencies": {
     "dotenv": "^17.2.3",
+<<<<<<< HEAD
     "firebase": "^12.4.0",
+=======
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
     "lucide-react": "^0.544.0",
     "openai": "^6.2.0",
     "prop-types": "^15.8.1",

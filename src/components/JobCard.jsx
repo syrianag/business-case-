@@ -1,8 +1,16 @@
+<<<<<<< HEAD
 import { MapPin, Building2, DollarSign, Briefcase } from 'lucide-react'; // Can I delete? 
 
 export default function JobCard({ job, onApply, selected }) { // Jobcard is a reuseable component that gets info from the parent component
   return ( // everything in this return is what gets shown on the page
     <div // showing tailwind css style
+=======
+import { MapPin, Building2, DollarSign, Briefcase } from 'lucide-react';
+// this is a reuseable component and file 
+export default function JobCard({ job, onApply, selected }) {
+  return (
+    <div 
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
       className={`bg-slate-800/50 backdrop-blur-sm border rounded-xl p-6 transition-all ${
         selected 
           ? 'border-purple-400/60 shadow-lg shadow-purple-500/20' 

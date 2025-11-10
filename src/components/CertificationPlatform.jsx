@@ -1,7 +1,12 @@
 import { useState } from 'react' // import react to store and update data 
+<<<<<<< HEAD
 import { Award, BookOpen, Clock, ChevronRight, Search, CheckCircle, Play, Download, Sparkles, Share2, FileText } from 'lucide-react' // icons to make the page look cute 
 import PageLayout from '../pages/PageLayout'
 import CertificateUploader from './CertificateUploader'
+=======
+import { Award, BookOpen, Clock, ChevronRight, Search, CheckCircle, Play, Download, Sparkles } from 'lucide-react' // icons to make the page look cute 
+import PageLayout from '../pages/PageLayout'
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
 
 // certification platform where users can browse, enroll, track progress and complete certifications
 
@@ -97,10 +102,16 @@ export default function CertificationPlatform() { // these are state variables t
   const [enrolledCourses, setEnrolledCourses] = useState([]) // shows what the user typed in the search box
   const [completedCerts, setCompletedCerts] = useState([]) // shows a list of course IDs the user completed (like a progress tracker)
   const [certifications, setCertifications] = useState(initialCertifications)
+<<<<<<< HEAD
   const [selectedCertForDesc, setSelectedCertForDesc] = useState(null)
   const [isGenerating, setIsGenerating] = useState(false)
   const [generateError, setGenerateError] = useState('')
 
+=======
+  const [newCertText, setNewCertText] = useState('')
+  const [isParsing, setIsParsing] = useState(false)
+  const [parseError, setParseError] = useState('')
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
 
   const filteredCerts = certifications.filter(cert => { // this takes all the certifications and filters them based on the selected category 
     const matchesCategory = selectedCategory === 'all' || cert.category === selectedCategory
@@ -121,6 +132,7 @@ export default function CertificationPlatform() { // these are state variables t
     }
   }
 
+<<<<<<< HEAD
   const handleCertificateValidated = (newCert) => {
     setCertifications(prev => [...prev, newCert])
     setCompletedCerts(prev => [...prev, newCert.id])
@@ -146,6 +158,33 @@ Skills: ${cert.skills ? cert.skills.join(', ') : 'General skills'}
 Level: ${cert.level || 'Professional'}`;
 
     try {
+=======
+  const handleAddCustomCert = async (e) => {
+    e.preventDefault()
+    if (!newCertText.trim()) return
+
+    setIsParsing(true)
+    setParseError('')
+
+    const prompt = `
+      Parse the following user-provided text about a completed certification and return a JSON object.
+      The JSON object must have these exact keys: "title" (string), "provider" (string), "date" (string, e.g., "YYYY-MM-DD").
+      If you cannot find a value for a key, use "N/A".
+      Do not include any text outside of the JSON object itself.
+
+      User text: "${newCertText}"
+    `
+
+    try {
+      async function handleSend (e) {
+  if (!input.trim()) return
+  console.log("Sending message:", input)
+    const userMsg = { sender: "user", text: input }
+    setMessages(prev => [...prev, userMsg])
+    setInput("")
+    setLoading(true)
+    try {
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
       const response = await fetch("https://api.openai.com/v1/chat/completions", {
         method: "POST",
         headers: {
@@ -154,6 +193,7 @@ Level: ${cert.level || 'Professional'}`;
         },
         body: JSON.stringify({
           model: "gpt-4o-mini",
+<<<<<<< HEAD
           response_format: { type: "json_object" },
           messages: [
             { role: "system", content: systemPrompt },
@@ -181,6 +221,47 @@ Level: ${cert.level || 'Professional'}`;
     } finally {
       setIsGenerating(false)
       setSelectedCertForDesc(null)
+=======
+          messages: [
+            { role: "system", content: "You are a helpful assistant that explains Chunking clearly." },
+            { role: "user", content: input }
+          ]
+        })
+      });
+      const data = await response.json();
+      const aiText = data.choices && data.choices[0] && data.choices[0].message && data.choices[0].message.content
+        ? data.choices[0].message.content.trim()
+        : "Hmm, I’m not sure how to answer that.";
+      const aiMsg = { sender: "ai", text: aiText };
+      setMessages(prev => [...prev, aiMsg]);
+    } catch (err) {
+      console.error(err)
+      setMessages(prev => [...prev, { sender: "ai", text: ":warning: Error: Unable to reach AI server." }])
+    } finally {
+      setLoading(false)
+    }
+  }
+      const result = await getChatCompletion(prompt)
+      const parsedCert = JSON.parse(result)
+
+      // Create a new certification object
+      const newCert = {
+        id: `custom-${Date.now()}`, // Unique ID for custom certs
+        title: parsedCert.title || 'Untitled Certification',
+        provider: parsedCert.provider || 'Unknown Provider',
+        description: `Completed on ${parsedCert.date || new Date().toLocaleDateString()}`,
+        isCustom: true, // Flag to identify custom entries
+      }
+
+      setCertifications(prev => [...prev, newCert])
+      setCompletedCerts(prev => [...prev, newCert.id])
+      setNewCertText('') // Clear the input field
+    } catch (error) {
+      console.error("AI parsing failed:", error)
+      setParseError("Sorry, I couldn't understand that. Please try rephrasing or check the console for more details.")
+    } finally {
+      setIsParsing(false)
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
     }
   }
 
@@ -402,14 +483,50 @@ Level: ${cert.level || 'Professional'}`;
 
         {activeTab === 'completed' && (
           <>
+<<<<<<< HEAD
           <CertificateUploader onCertificateValidated={handleCertificateValidated} />
 
           <div className="space-y-6 mt-8">
+=======
+          {/* AI-Powered Add Certification Form */}
+          <div className="mb-8 bg-slate-800/50 backdrop-blur-sm border border-purple-500/20 rounded-xl p-6">
+            <div className="flex items-center gap-3 mb-4">
+              <Sparkles className="w-6 h-6 text-purple-400" />
+              <h3 className="text-xl font-bold text-white">Add a Completed Certification with AI</h3>
+            </div>
+            <p className="text-gray-400 mb-4">
+              Simply type or paste details about a certification you've earned. For example: "I finished the Google Data Analytics cert on May 20, 2024". Our AI will handle the rest!
+            </p>
+            <form onSubmit={handleAddCustomCert}>
+              <textarea
+                value={newCertText}
+                onChange={(e) => setNewCertText(e.target.value)}
+                placeholder="Enter certification details here..."
+                className="w-full p-3 bg-slate-700/50 border border-purple-500/30 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-400"
+                rows="3"
+              />
+              {parseError && <p className="text-red-400 text-sm mt-2">{parseError}</p>}
+              <button
+                type="submit"
+                disabled={isParsing || !newCertText}
+                className="mt-4 w-full sm:w-auto px-6 py-2 bg-purple-500 text-white rounded-lg font-semibold hover:bg-purple-600 transition-all disabled:bg-slate-600 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              >
+                {isParsing ? 'Analyzing...' : 'Add Certification'}
+              </button>
+            </form>
+          </div>
+
+          <div className="space-y-6">
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
             {completedCerts.length === 0 ? (
               <div className="text-center py-16">
                 <Award className="w-16 h-16 text-gray-600 mx-auto mb-4" />
                 <h3 className="text-xl font-semibold text-gray-400 mb-2">No completed certifications</h3>
+<<<<<<< HEAD
                 <p className="text-gray-500">Upload your first certification above!</p>
+=======
+                <p className="text-gray-500">Keep learning to earn your first certificate!</p>
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
               </div>
             ) : (
               <div className="grid md:grid-cols-2 gap-6">
@@ -421,6 +538,7 @@ Level: ${cert.level || 'Professional'}`;
                       className="bg-gradient-to-br from-purple-900/50 to-slate-800/50 backdrop-blur-sm border border-purple-400/40 rounded-xl p-6"
                     >
                       <div className="flex items-start justify-between mb-4">
+<<<<<<< HEAD
                         {cert.isUploaded ? (
                           <div className="flex items-center gap-2">
                             <FileText className="w-12 h-12 text-purple-400" />
@@ -441,11 +559,18 @@ Level: ${cert.level || 'Professional'}`;
                             </span>
                           </div>
                         )}
+=======
+                        <Award className="w-12 h-12 text-purple-400" />
+                        <span className="text-xs font-semibold text-green-400 bg-green-500/20 px-3 py-1 rounded-full">
+                          Completed
+                        </span> 
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
                       </div>
                       
                       <h3 className="text-xl font-bold text-white mb-2">{cert.title}</h3>
                       <p className="text-gray-400 mb-4">{cert.provider}</p>
                       <p className="text-sm text-gray-300 mb-4">
+<<<<<<< HEAD
                         {cert.isCustom ? cert.description : 
                          cert.isUploaded ? 'Document verified by AI' :
                          cert.description}
@@ -482,6 +607,19 @@ Level: ${cert.level || 'Professional'}`;
                             Share
                           </button>
                         )}
+=======
+                        {cert.isCustom ? cert.description : `Completed: ${new Date().toLocaleDateString()}`}
+                      </p>
+
+                      <div className="flex gap-3">
+                        <button className="flex-1 bg-purple-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-600 transition-all flex items-center justify-center gap-2">
+                          <Wishlist className="w-4 h-4" />
+                          Add to Wishlist 
+                        </button>
+                        <button className="bg-slate-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-slate-600 transition-all">
+                          Share
+                        </button>
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
                       </div>
                     </div>
                   )

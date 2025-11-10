@@ -19,7 +19,10 @@ const Nav = () => {
           <li><NavLink to="/certifications" className={navLinkClasses}>Certifications</NavLink></li>
           <li><NavLink to="/MentorMatch" className={navLinkClasses}>Mentor Match</NavLink></li>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
         </ul>
       </div>
     </nav>

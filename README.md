@@ -1,6 +1,7 @@
 # Beyond The Code
 Welcome to "Beyond The Code," a modern web application designed to help individuals, particularly those without traditional college degrees, find opportunities in the tech industry. It features a job search platform and an integrated AI assistant to help with career-related questions.
 
+<<<<<<< HEAD
 ## Features
 
 - **Job Listings**: Browse and search for entry-level and internship positions.
@@ -11,6 +12,17 @@ Welcome to "Beyond The Code," a modern web application designed to help individu
 - **Mentor Matching**: Connect with industry professionals for mentorship in soft skills, technical guidance networking.
 - **Vite Test**: For testing; making sure program is running smoothly everywhere
 ## Tech Stack
+=======
+## ✨ Features
+
+- **Job Listings**: Browse and search for entry-level and internship positions.
+- **AI Chat Assistant**: Get career advice and answers to your questions using an integrated OpenAI-powered chat.
+- **Modern UI**: A clean and responsive user interface built with Tailwind CSS.
+- **Client-Side Routing**: Seamless navigation between pages using React Router.
+- **Mentor Matching**: Connect with industry professionals for mentorship in soft skills, technical guidance, and networking.
+
+## 🚀 Tech Stack
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
 
 - **Frontend**: [React](https://reactjs.org/), [Vite](https://vitejs.dev/)
 - **Styling**: [Tailwind CSS](https://tailwindcss.com/)
@@ -18,6 +30,7 @@ Welcome to "Beyond The Code," a modern web application designed to help individu
 - **AI Integration**: [OpenAI API](https://openai.com/docs)
 - **Linting & Formatting**: [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
 
+<<<<<<< HEAD
 ## Future Improvements 
 
 - **Map**: Make map more visibly appeling with icons that are benefitual 
@@ -27,6 +40,11 @@ Welcome to "Beyond The Code," a modern web application designed to help individu
 ---
 
 ## Getting Started
+=======
+---
+
+## ⚙️ Getting Started
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
 
 Follow these instructions to get a local copy up and running.
 
@@ -35,7 +53,11 @@ Follow these instructions to get a local copy up and running.
 - [Node.js](https://nodejs.org/en/) (v18 or newer recommended)
 - `npm` or your preferred package manager
 
+<<<<<<< HEAD
 ### Installation & Setup
+=======
+### ⚙️ Installation & Setup
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
 
 This project contains two main parts: the React frontend and a Node.js script for testing the API.
 
@@ -66,7 +88,11 @@ The `main.js` script is a simple way to test your API key from your terminal wit
     VITE_OPENAI_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
     ```
 
+<<<<<<< HEAD
 ## Available Scripts
+=======
+## 📜 Available Scripts
+>>>>>>> 3e13479b94971f9f44624de982c1434f8ee8c517
 
 In the project directory, you can run the following commands:
 
